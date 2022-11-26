@@ -1,7 +1,6 @@
 import React from 'react'
 import { Header } from '../components'
 import { ArtForm } from '../components/ArtForm'
-import '../globals.css'
 
 const IndexPage = () => {
   return (
