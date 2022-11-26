@@ -3,9 +3,100 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Sign</title>
+	<link href="./styles.css" rel="stylesheet">
+  <title>Sign</title>
 </head>
-<body>
-
+<body onload="init()">
+  <main>
+    <div class="mt-16 flex flex-col gap-8 items-center justify-center">
+      <h1 class="text-4xl">Leave your Insignia</h1>
+      <canvas id="myCanvas" width="300" height="300" class="shadow-lg border border-black rounded-lg">Your browser doesn't support canvas.</canvas>
+      <form action="/sign" method="POST" class="flex flex-col rounded-lg gap-4 px-8 pt-2 pb-12">
+        <div class="flex flex-col gap-2">
+          <label>Username</label>
+          <input name="username" id="username" required type="text" class="border border-black w-64 px-2 py-2 rounded"/>
+        </div>
+        <div class="flex w-64 flex-col gap-2">
+          <label>Tezos</label>
+          <input name="tezos" id="tezos" type="number" required step="0.01" class="w-64 border border-black px-2 py-2 rounded"/> 
+        </div>
+        <button type="submit" class="rounded w-64 py-2 px-1 bg-blue-600 text-white transition hover:bg-blue-500 mt-4 text-sm">SIGN</button>
+      </form>
+    </div>
+  </main>
 </body>
 </html>
+
+<script type="text/javascript">
+    var canvas, ctx, flag = false,
+        prevX = 0,
+        currX = 0,
+        prevY = 0,
+        currY = 0,
+        dot_flag = false;
+
+    var x = "red",
+        y = 2;
+    
+    function init() {
+        canvas = document.getElementById('myCanvas');
+        ctx = canvas.getContext("2d");
+        w = canvas.width;
+        h = canvas.height;
+    
+        canvas.addEventListener("mousemove", function (e) {
+            findxy('move', e)
+        }, false);
+        canvas.addEventListener("mousedown", function (e) {
+            findxy('down', e)
+        }, false);
+        canvas.addEventListener("mouseup", function (e) {
+            findxy('up', e)
+        }, false);
+        canvas.addEventListener("mouseout", function (e) {
+            findxy('out', e)
+        }, false);
+    }
+       
+    function draw() {
+        ctx.beginPath();
+        ctx.moveTo(prevX, prevY);
+        ctx.lineTo(currX, currY);
+        ctx.strokeStyle = x;
+        ctx.lineWidth = y;
+        ctx.stroke();
+        ctx.closePath();
+    } 
+        
+    function findxy(res, e) {
+        if (res == 'down') {
+            prevX = currX;
+            prevY = currY;
+            currX = e.clientX - canvas.offsetLeft;
+            currY = e.clientY - canvas.offsetTop;
+    
+            flag = true;
+            dot_flag = true;
+            if (dot_flag) {
+                ctx.beginPath();
+                ctx.fillStyle = x;
+                ctx.fillRect(currX, currY, 2, 2);
+                ctx.closePath();
+                dot_flag = false;
+            }
+        }
+        if (res == 'up' || res == "out") {
+            flag = false;
+        }
+        if (res == 'move') {
+            if (flag) {
+                prevX = currX;
+                prevY = currY;
+                currX = e.clientX - canvas.offsetLeft;
+                currY = e.clientY - canvas.offsetTop;
+                draw();
+            }
+        }
+    }
+</script>>
+
