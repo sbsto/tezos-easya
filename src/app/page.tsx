@@ -6,7 +6,7 @@ import '../globals.css'
 const IndexPage = () => {
   return (
     <div className="flex flex-col items-center">
-      <Header title="open gallery" />
+      <Header title="insignia" />
       <ArtForm />
     </div>
   )
