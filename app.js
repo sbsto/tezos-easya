@@ -1,23 +1,12 @@
-const express = require('express')
-const app = express();
-const http = require('http').Server(app);
-const bodyParser = require('body-parser');
+const Server = require("./server/server.js")
+const Artwork = require("./artwork/artwork.js")
 
-app.use(bodyParser.urlencoded({ extended: true }));
+Server.build()
+
+const artwork = new Artwork("test")
+artwork.startMintEvent(2)
 
 
-
-app.use(express.static("public"))
-
-app.get('/', function(req, res) {
-   res.redirect("/sign")
-});
-
-// receive form data
-app.post('/sign', function(req, res) {
-  console.log(req.body)
+Server.on("client-connect", (client) => {
+	client.send({ info: artwork.getInfo() })
 })
-
-http.listen(3001, function() {
-   console.log('listening on *:3001')
-});
