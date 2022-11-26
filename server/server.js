@@ -2,10 +2,11 @@ const express = require("express")
 const app = express()
 const http = require("http").Server(app)
 const io = require("socket.io")(http)
-
+const bodyParser = require('body-parser')
 
 const EventEmitter = require("events")
 const Client = require("./client.js")
+
 
 
 const port = 3000
@@ -22,10 +23,7 @@ class Server extends EventEmitter
    build()
    {
       app.use(express.static("public"))
-
-      app.get("/", function(req, res) {
-         res.redirect("/sign")
-      })
+      app.use(bodyParser.urlencoded({ extended: true }));
 
       io.on("connection", (socket) => {
 
@@ -39,6 +37,16 @@ class Server extends EventEmitter
          })
 
       })
+
+
+      app.get("/", function(req, res) {
+         res.redirect("/sign")
+      })
+
+      app.post('/sign', function(req, res) {
+         console.log(req.body)
+      })
+
 
 
       http.listen(port, () => {
