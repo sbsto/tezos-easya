@@ -41,10 +41,6 @@ class Server extends EventEmitter
          res.redirect("/sign")
       })
 
-      app.get("/api/*", function(req, res) {
-         res.redirect("/sign")
-      })
-
       app.post('/sign', function(req, res) {
          this.emit("sign", req.body)
          res.redirect("/preview")
