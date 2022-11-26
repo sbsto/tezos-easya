@@ -10,3 +10,7 @@ artwork.startMintEvent(2)
 Server.on("client-connect", (client) => {
 	client.send({ info: artwork.getInfo() })
 })
+
+Server.on("sign", (submission) => {
+	console.log(submission)
+})

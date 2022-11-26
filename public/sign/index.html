@@ -28,6 +28,9 @@
 </html>
 
 <script type="text/javascript">
+
+    const signature = []
+
     var canvas, ctx, flag = false,
         prevX = 0,
         currX = 0,
@@ -59,6 +62,9 @@
     }
        
     function draw() {
+
+        signature.push([prevX, prevY])
+
         ctx.beginPath();
         ctx.moveTo(prevX, prevY);
         ctx.lineTo(currX, currY);

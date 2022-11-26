@@ -7,9 +7,7 @@ const bodyParser = require('body-parser')
 const EventEmitter = require("events")
 const Client = require("./client.js")
 
-
-
-const port = 3000
+const port = process.env.PORT || 3000
 
 class Server extends EventEmitter
 {
@@ -44,7 +42,8 @@ class Server extends EventEmitter
       })
 
       app.post('/sign', function(req, res) {
-         console.log(req.body)
+         this.emit("sign", req.body)
+         res.redirect("/preview")
       })
 
 
