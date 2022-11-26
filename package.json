@@ -2,7 +2,7 @@
   "name": "tezos-easya",
   "version": "1.0.0",
   "description": "This repo contains our project for the Tezos x EasyA hackathon.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

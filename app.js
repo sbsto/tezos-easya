@@ -1,10 +1,16 @@
-const app = require('express')();
+const express = require('express')
+const app = express();
 const http = require('http').Server(app);
 
+
+
+
+app.use(express.static("public"))
+
 app.get('/', function(req, res) {
-   res.sendfile('index.html');
+   res.redirect("/sign")
 });
 
 http.listen(3000, function() {
-   console.log('listening on *:3000');
+   console.log('listening on *:3000')
 });
