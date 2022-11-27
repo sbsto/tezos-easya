@@ -1,4 +1,6 @@
 const EventEmitter = require("events")
+const fs = require("fs")
+const imageDataURI = require("image-data-uri")
 
 class Artwork extends EventEmitter
 {
@@ -69,6 +71,13 @@ class Artwork extends EventEmitter
 		}
 
 		this.emit("submission-update")
+	}
+
+	save(mintURI)
+	{
+		const result = imageDataURI.decode(mintURI)
+
+		fs.writeFileSync("artwork.jpg", result.dataBuffer)
 	}
 
 	getInfo()

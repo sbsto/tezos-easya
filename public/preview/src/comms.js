@@ -2,7 +2,7 @@ const getServerAddress = () => {
 	return document.URL.split("/"[2])
 }
 
-const SOCKET_PORT=3000
+const SOCKET_PORT=3001
 
 export default class CommsManager {
 

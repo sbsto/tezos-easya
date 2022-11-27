@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 const EventEmitter = require("events")
 const Client = require("./client.js")
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3001
 
 class Server extends EventEmitter
 {

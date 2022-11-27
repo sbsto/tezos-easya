@@ -20,6 +20,7 @@
   "homepage": "https://github.com/sbsto/tezos-easya#readme",
   "dependencies": {
     "express": "^4.18.2",
+    "image-data-uri": "^2.0.1",
     "postcss-cli": "^10.0.0",
     "socket.io": "^4.5.4",
     "three-nebula": "^10.0.3"

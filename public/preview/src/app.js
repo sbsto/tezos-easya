@@ -4,6 +4,8 @@ import Visualiser from "./visualiser.js"
 const comms = new CommsManager()
 const visualiser = new Visualiser()
 
+const root = window.location.search === "?root"
+
 class Countdown
 {
 	constructor(title)
@@ -105,9 +107,14 @@ const update = () => {
 	countdown.update()
 	visualiser.update()
 	
-	if (countdown.done)
+	if (countdown.done && !visualiser.paused)
 	{
 		visualiser.pause()
+
+		if (root)
+		{
+			comms.send({"mint-result": visualiser.export()})
+		}
 	}
 
 	window.requestAnimationFrame( update )

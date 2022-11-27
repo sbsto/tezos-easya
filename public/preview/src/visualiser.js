@@ -169,6 +169,10 @@ export default class Visualiser
 		this.renderer.render( this.scene, this.camera )
 	}
 
+	export()
+	{
+		return this.renderer.domElement.toDataURL("image/jpeg")
+	}
 }
 
 
