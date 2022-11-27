@@ -41,7 +41,7 @@ class Server extends EventEmitter
          res.redirect("/sign")
       })
 
-      app.post('/sign', function(req, res) {
+      app.post('/sign', (req, res) => {
          this.emit("sign", req.body)
          res.redirect("/preview")
       })
@@ -52,6 +52,11 @@ class Server extends EventEmitter
          console.log(`Server running on port ${port}.`)
       })
 
+   }
+
+   broadcast(message)
+   {
+      io.emit("/io/message", message)
    }
 
 

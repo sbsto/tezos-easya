@@ -1,0 +1,43 @@
+html {
+
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  color: #ffffff;
+}
+
+body {
+
+  margin: 0;
+
+}
+
+html, body {
+
+  overflow: hidden;
+    margin: 0 !important;
+    padding: 0 !important;
+
+
+}
+
+body { 
+  background-color: #000000; 
+  overflow: hidden; 
+  width: 100%; 
+  height: 100%; 
+  margin: auto;
+}
+
+#log
+{
+  margin: 5%;
+}
+
+canvas
+{
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+}
+
+

@@ -3,11 +3,21 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="./styles.css" rel="stylesheet">
 	<title>Preview</title>
 	<script src = "/socket.io/socket.io.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.146.0/three.min.js" integrity="sha512-Wft1v8e5sfJmolWfOyea3DBsf2qHZv6uBKLkvEYNSUo0wImWa9DYZH1lHU5y/UIfQu4xJ3xahqv1X4pvx3cv/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script type="text/javascript" src='lib/three-nebula/build/three-nebula.js'></script>
 	<script type="module" src="src/app.js"></script>
+
 </head>
 <body>
-<h1 id="countdown"></h1>
+	<canvas id="preview-canvas"></canvas>
+	<div id="log">
+		<h1 id="countdown"></h1>
+		<h2 id="submissions-title"></h2>
+		<div id="submissions-display"></div>
+		<h2 id="seed-readout"></h2>
+	</div>
 </body>
 </html>

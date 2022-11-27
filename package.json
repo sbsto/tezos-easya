@@ -21,7 +21,8 @@
   "dependencies": {
     "express": "^4.18.2",
     "postcss-cli": "^10.0.0",
-    "socket.io": "^4.5.4"
+    "socket.io": "^4.5.4",
+    "three-nebula": "^10.0.3"
   },
   "devDependencies": {
     "eslint": "^8.28.0",

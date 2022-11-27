@@ -1,11 +1,23 @@
-class Artwork
+const EventEmitter = require("events")
+
+class Artwork extends EventEmitter
 {
 
-	constructor(name)
+	constructor(name, artist)
 	{
-		this.name = name
+		super()
 
+		this.name = name
+		this.artist = artist
+
+		this.artistColour = this.getRandomColour()
+
+		this.seed = Date.now()
+
+		this.mintStart = Date.now()
 		this.mintTimeout = null
+
+		this.submissions = []
 	}
 
 	startMintEvent(durationMins)
@@ -19,9 +31,49 @@ class Artwork
 		}
 	}
 
+	getRandomColour()
+	{
+
+		const randomHex = () =>
+		{
+			const base = 120
+			return Math.round(base + Math.random() * (255-base)).toString(16)
+		}
+
+		return "#" + randomHex() + randomHex() + randomHex()
+	}
+
+	addSubmission(submission)
+	{
+		submission.stamp = Date.now()
+		if (submission.stamp >= this.mintTimeout)
+		{
+			return
+		}
+
+		submission.colour = this.getRandomColour()
+
+		submission.position = { x: Math.random()*1.4-1, y: Math.random()*1.8-1 }
+		
+		this.submissions.push(submission)
+
+		const tezP = Math.min(10, Math.max(0.002, submission.tezos)) 
+		const markP = Math.max(1, Math.min(100000, parseInt(submission.mark)))
+
+		this.seed /= tezP 
+		this.seed *= markP
+
+		if (Math.round(this.seed).toString(16) === "NaN")
+		{
+			this.seed = submission.stamp
+		}
+
+		this.emit("submission-update")
+	}
+
 	getInfo()
 	{
-		return { name: this.name, mintTimeout: this.mintTimeout }
+		return { name: this.name, artist: this.artist, artistColour:this.artistColour, mintStart: this.mintStart, mintTimeout: this.mintTimeout, seed: Math.round(this.seed).toString(16), submissions: this.submissions }
 	}
 }
 
